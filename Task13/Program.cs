@@ -2,29 +2,36 @@
 // 645 -> 5
 // 78 -> третьей цифры нет
 // 32679 -> 6
-Console.WriteLine("Введите число:");
+
+// Задачу мне решил  ChatGPT, я не понял как это решается, туплю над ней дальше
+
+Console.WriteLine("Введите число: ");
 int number = Convert.ToInt32(Console.ReadLine());
 
-int thirdDigit = GetThirdDigit(number);
+int absoluteNumber = number >= 0 ? number : -number; // Получаем абсолютное значение числа
+int digitCount = 0;
+int temp = absoluteNumber;
 
-if (thirdDigit != -1)
+// Считаем количество цифр в числе
+while (temp > 0)
 {
-Console.WriteLine($"Третья цифра числа: {thirdDigit}");
+    temp = temp / 10;
+    digitCount++;
+}
+
+if (digitCount >= 3)
+{
+    // Ищем третью цифру слева
+    int divisor = 1;
+    for (int i = 1; i < digitCount - 2; i++)
+    {
+        divisor *= 10;
+    }
+
+    int thirdDigit = (absoluteNumber / divisor) % 10;
+    Console.WriteLine($"Третья цифра числа: {thirdDigit}");
 }
 else
 {
-Console.WriteLine("Третьей цифры нет");
+    Console.WriteLine("Третьей цифры нет");
 }
-    
-
-int GetThirdDigit(int number)
-    {
-    int absoluteNumber = Math.Abs(number);
-
-    if (absoluteNumber >= 100)
-    {
-        int thirdDigit = (absoluteNumber / 100) % 10;
-        return thirdDigit;
-    }
-    return -1;
-    }
