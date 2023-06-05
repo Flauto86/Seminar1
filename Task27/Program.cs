@@ -10,7 +10,7 @@ int sum = CalculateDigitSum(number);
 Console.WriteLine($"Сумма цифр: {sum}");
 
 
-static int CalculateDigitSum(int number)
+int CalculateDigitSum(int number)
 {
     int sum = 0;
 
